@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfImageDrawApplication1", "WpfImageDrawApplication1\WpfImageDrawApplication1.csproj", "{5D6E5032-8209-4E69-853D-951E0A97832A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualizingWrapPanel", "..\VirtualizingWrapPanel\VirtualizingWrapPanel.csproj", "{30D14E81-BD4E-4516-B486-B677198997F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualizingUniformSizeWrapPanel", "..\VirtualizingUniformSizeWrapPanel\VirtualizingUniformSizeWrapPanel.csproj", "{30D14E81-BD4E-4516-B486-B677198997F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

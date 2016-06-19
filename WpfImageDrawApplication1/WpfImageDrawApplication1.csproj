@@ -96,9 +96,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\VirtualizingWrapPanel\VirtualizingWrapPanel.csproj">
+    <ProjectReference Include="..\..\VirtualizingUniformSizeWrapPanel\VirtualizingUniformSizeWrapPanel.csproj">
       <Project>{30d14e81-bd4e-4516-b486-b677198997f0}</Project>
-      <Name>VirtualizingWrapPanel</Name>
+      <Name>VirtualizingUniformSizeWrapPanel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
