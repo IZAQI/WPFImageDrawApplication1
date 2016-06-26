@@ -31,22 +31,27 @@ namespace WpfImageDrawApplication1
 
                 var path = System.IO.Path.Combine(System.Environment.CurrentDirectory, @"image.png");
 
-                var image = new BitmapImage();
-                image.BeginInit();
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.CreateOptions = BitmapCreateOptions.None;
-                image.UriSource = new Uri(path, UriKind.Absolute);
-                image.EndInit();
-                image.Freeze();
 
                 ImageCollection = new ObservableCollection<ImageSourceModel>();
 
                 for (int i = 0; i < 5000; i++)
                 {
-                    ImageCollection.Add(new ImageSourceModel(image));
-                }
+                    // no cache
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    //image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.CacheOption = BitmapCacheOption.None;
+                    image.CreateOptions = BitmapCreateOptions.DelayCreation;
+                    //image.CreateOptions = BitmapCreateOptions.None;
+                    image.UriSource = new Uri(path, UriKind.Absolute);
+                    image.EndInit();
+                    image.Freeze();
 
-                path = System.IO.Path.Combine(System.Environment.CurrentDirectory, @"image2.png");
+                    ImageCollection.Add(new ImageSourceModel(image));
+                    //ImageCollection.Add(new ImageSourceModel(new ImageBrush(image)));
+            }
+
+            path = System.IO.Path.Combine(System.Environment.CurrentDirectory, @"image2.png");
                 var image2 = new BitmapImage();
                 image2.BeginInit();
                 image2.CacheOption = BitmapCacheOption.OnLoad;
@@ -55,6 +60,7 @@ namespace WpfImageDrawApplication1
                 image2.EndInit();
                 image2.Freeze();
             ImageCollection.Add(new ImageSourceModel(image2));
+            //ImageCollection.Add(new ImageSourceModel(new ImageBrush(image2)));
 
 
             DataContext = ImageCollection;
@@ -68,16 +74,26 @@ namespace WpfImageDrawApplication1
         }
     }
 
-    //public class ImageSourceModel : INotifyPropertyChanged
-    public class ImageSourceModel
+    public class ImageSourceModel : INotifyPropertyChanged
+    //public class ImageSourceModel
     {
+
+        public ImageSourceModel()
+        {
+            Bitmap = new BitmapImage();
+            //Bitmap = new ImageBrush();
+        }
+
         public ImageSourceModel(BitmapImage path)
+        //public ImageSourceModel(ImageBrush path)
         {
             Bitmap = path;
         }
 
         private BitmapImage _bitmapImage = new BitmapImage();
         public BitmapImage Bitmap
+        //private ImageBrush _bitmapImage = new ImageBrush();
+        //public ImageBrush Bitmap
         {
             get
             {
@@ -99,7 +115,8 @@ namespace WpfImageDrawApplication1
             set
             {
                 _bitmapImage = value;
-                //OnPropertyChanged("Bitmap");
+
+                OnPropertyChanged("Bitmap");
             }
 
         }
@@ -109,6 +126,7 @@ namespace WpfImageDrawApplication1
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string name)
         {
+            if (PropertyChanged == null) return;
             PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
         #endregion

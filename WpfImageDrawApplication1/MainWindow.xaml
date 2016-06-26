@@ -17,14 +17,22 @@
             -->
             <ItemsControl.Template>
                 <ControlTemplate>
+                    <!-- Horizontal
                     <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled" CanContentScroll="True" >
+                    -->
+                    <!-- Vertical-->
+                    <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Visible" CanContentScroll="True" >
                         <ItemsPresenter/>
                     </ScrollViewer>
                 </ControlTemplate>
             </ItemsControl.Template>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
+                    <!--Horizontal
                     <vwp:VirtualizingUniformSizeWrapPanel IsVirtualizing="False" VirtualizationMode="Recycling" ScrollUnit="Pixel" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal"/>
+                    -->
+                    <!-- Vertical-->
+                    <vwp:VirtualizingUniformSizeWrapPanel IsVirtualizing="False" VirtualizationMode="Recycling" ScrollUnit="Pixel" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" />
                     <!--
                         <VirtualizingStackPanel IsVirtualizing="True"  HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal"/>
                         -->
@@ -41,12 +49,14 @@
                         -->
                         <!--
                         <Image  
-                            Source="{Binding Bitmap,IsAsync=True}"
+                            Source="{Binding Bitmap, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Delay =10000}"
                                 HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
                         -->
+                        
                         <Image  
                             Source="{Binding Bitmap}"
                                 HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
+                        
                     </Viewbox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
